@@ -69,6 +69,7 @@ game.manager.add_entity(player)
 
 player_raycaster = Raycaster(player, int(WIDTH/len(level[0])), int(HEIGHT/len(level)), fov=70)
 
+horizon = HEIGHT // 2
 ground_colour = Colour(0, 150, 30)
 sky_colour = Colour(135, 200, 240)
 
@@ -77,7 +78,7 @@ def update():
     player_raycaster.cast_rays(level_manager)
 
 def draw(screen):
-    pygame.draw.rect(screen, ground_colour.read_colour(), (0, HEIGHT//2, WIDTH, HEIGHT // 2))
+    pygame.draw.rect(screen, ground_colour.read_colour(), (0, horizon, WIDTH, HEIGHT - horizon))
     for i, ray in enumerate(player_raycaster.rays):
         # shading
         if ray.object == Wall:
