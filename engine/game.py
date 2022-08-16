@@ -14,9 +14,9 @@ class Game:
         self.font = pygame.font.SysFont('Arial', 15)
 
 
-    def run(self, update, draw, fps=60, verbose=False):
+    def run(self, update, draw, background_colour, fps=60, verbose=False):
         while True:
-            self.screen.fill((0, 0, 0))
+            self.screen.fill(background_colour.read_colour())
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
