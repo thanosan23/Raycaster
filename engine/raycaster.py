@@ -31,6 +31,10 @@ class Raycaster:
         self.block_size_y = block_size_y
         self.fov = fov
 
+
+        # NOTE: This can have a significant toll on framerate
+        self.angle_per_iter = 8 # move 1/16 of an angle per iteration
+
         self.rays = []
 
         self.width = pygame.display.get_surface().get_width()
@@ -51,8 +55,8 @@ class Raycaster:
 
         angle = bound_radian(self.entity.pos.angle - DEGREE_TO_RADIANS * self.fov / 2)
         level = level_manager.level
-
-        for i in range(self.fov):
+        # 1/16 of an angle per iteration
+        for i in range(self.fov*self.angle_per_iter):
             ray = Ray()
             ray.angle = angle
 
@@ -152,7 +156,7 @@ class Raycaster:
 
             self.rays.append(ray)
 
-            angle += DEGREE_TO_RADIANS
+            angle += (DEGREE_TO_RADIANS/self.angle_per_iter)
             angle = bound_radian(angle)
 
         return self.rays

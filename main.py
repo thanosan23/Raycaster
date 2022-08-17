@@ -90,7 +90,7 @@ def draw(screen):
             dist = min(HEIGHT, dist)
             offset = (HEIGHT - dist) / 2
 
-            render_width = int(WIDTH / player_raycaster.fov) + 1
+            render_width = int(WIDTH / (player_raycaster.fov * player_raycaster.angle_per_iter)) + 1
             pygame.draw.line(screen, colour.read_colour(), (i*render_width, offset), (i*render_width, dist + offset), render_width)
 
 if __name__ == "__main__":
