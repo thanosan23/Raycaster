@@ -31,7 +31,6 @@ class Raycaster:
         self.block_size_y = block_size_y
         self.fov = fov
 
-
         # NOTE: This can have a significant toll on framerate
         self.angle_per_iter = 8 # move 1/16 of an angle per iteration
 

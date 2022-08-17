@@ -3,7 +3,7 @@ import math
 
 from engine.ecs import Component
 from engine.utils.trig import bound_radian
-from engine.level import MapObject
+from engine.level import MapObject, Empty
 
 class PositionComponent(Component):
     def __init__(self, x, y, w, h, dx=0, dy=0, angle=0, angle_step_size=3):
@@ -52,6 +52,9 @@ class ColliderComponent(Component):
 
     def colliding(self, x, y, mapObject):
         assert isinstance(mapObject(), MapObject)
+        assert not isinstance(mapObject(), Empty)
+        if x > self.screen_width or y > self.screen_height or x < 0 or y < 0:
+            return True
         x = int(x // self.block_size_x)
         y = int(y // self.block_size_y)
         return isinstance(self.level.level[y][x], mapObject)

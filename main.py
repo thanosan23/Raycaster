@@ -80,8 +80,8 @@ def update():
 def draw(screen):
     pygame.draw.rect(screen, ground_colour.read_colour(), (0, horizon, WIDTH, HEIGHT - horizon))
     for i, ray in enumerate(player_raycaster.rays):
-        # shading
         if ray.object == Wall:
+            # shading
             colour = Colour(255, 0, 0)
             if ray.gridline == Gridline.horizontal:
                 colour.darken()
